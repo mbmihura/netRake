@@ -19,15 +19,19 @@ namespace netRake.Commands
 
         public generate()
         {
-            Console.WriteLine("se genero!");
+            Console.WriteLine("se genero!"); //TODO: for debug, delete in producction
         }
 
         public void Execute(string[] args)
         {
             switch (args[0])
             {
-                case "view":
-                    Console.WriteLine("Working dir: "+ Environment.CurrentDirectory);
+                case "form":
+                    List<Control> controls = new List<Control> ();
+                    string currentDirectoyName = Environment.CurrentDirectory;
+                    int cropIndex = currentDirectoyName.LastIndexOf('\\') +1;
+                    currentDirectoyName = currentDirectoyName.Substring(cropIndex,currentDirectoyName.Length - cropIndex);
+                    new FormCoder(currentDirectoyName, args[1], controls).Create(Environment.CurrentDirectory);
                     break;
                 default:
                     throw new IncorrectArgumentException(this, args[0]);
@@ -49,6 +53,7 @@ namespace netRake.Commands
                     break;
                 default:
                     throw new IncorrectArgumentException(this, args[0]);
+
             }
         }
     }
