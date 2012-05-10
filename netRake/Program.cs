@@ -26,7 +26,7 @@ namespace netRake
             }
 
             //HACK: handy, automatic way to introduce a command during development. Eliminate in production.
-            args = new string[] { "generate", "view" };
+            args = new string[] { "generate", "form", "myForm" };
 
             //Extracts Type from the first argument, 
             Type commandType = _comands[args[0]];
@@ -38,6 +38,7 @@ namespace netRake
 
             //Execute using the rest of the arguments
             command.Execute(args.Skip(1).ToArray());
+
         }
     }
 }
