@@ -12,14 +12,14 @@ namespace netRake
         List<Control> _controles;
 
         public FormCoder(string espacioDeNombres, string clase, List<Control> controles)
-        { 
-            _espacioDeNombre = espacioDeNombres;
-            _clase = clase;
-            _controles = controles;
-
-        }
-        public void Create(string path)
         {
+            _espacioDeNombre = espacioDeNombres.Substring(0, 1).ToUpper() + espacioDeNombres.Substring(1); //TODO: refactor method
+            _clase = clase.Substring(0,1).ToUpper() + clase.Substring(1);
+            _controles = controles;
+         }
+        public void Create(string filePath)
+        {
+            Console.WriteLine("Creating " + _clase + " in " + _espacioDeNombre + ".Forms"+ Environment.NewLine + "Synthesizing code...");
             StringBuilder declareComponentVariables = new StringBuilder();
             StringBuilder initializeComponentbody = new StringBuilder();
             foreach (Control c in _controles)
@@ -34,14 +34,13 @@ namespace netRake
                 initializeComponentbody.AppendLine(c.configuracionPropiedades());
 
             }
-
-
-
-            StreamWriter file = new StreamWriter("");
-            file.WriteLine("namespace " + _espacioDeNombre + @"
-{{
+            
+            string fileName = filePath + _clase + ".Designer.cs";
+            StreamWriter file = new StreamWriter(fileName);
+            file.WriteLine(@"namespace " + _espacioDeNombre + @".Forms
+{
     partial class " + _clase + @"
-    {{
+    {
         /// <summary>
         /// Variable del diseñador requerida.
         /// </summary>
@@ -50,15 +49,15 @@ namespace netRake
         /// <summary>
         /// Limpiar los recursos que se estén utilizando.
         /// </summary>
-        /// <param name=" + "\"disposing\">true si los recursos administrados se deben eliminar; false en caso contrario, false.</param>" +
-        @"protected override void Dispose(bool disposing)
-        {{
+        /// <param name=" + "\"disposing\">true si los recursos administrados se deben eliminar; false en caso contrario, false.</param>" + @"
+        protected override void Dispose(bool disposing)
+        {
             if (disposing && (components != null))
-            {{
+            {
                 components.Dispose();
-            }}
+            }
             base.Dispose(disposing);
-        }}
+        }
 
         #region Código generado por el Diseñador de Windows Forms
 
@@ -67,15 +66,50 @@ namespace netRake
         /// el contenido del método con el editor de código.
         /// </summary>
         private void InitializeComponent()
-        {{
+        {
             " + initializeComponentbody.ToString() + @"
-        }}
+            // 
+            // "+_clase+@"
+            // 
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.ClientSize = new System.Drawing.Size(284, 262);
+            this.Name = " + "\"" + _clase + "\"" + @";
+            this.Text = " + "\"" + _clase + "\"" + @";
+            this.ResumeLayout(false);
+        }
 
         #endregion
 
          " + declareComponentVariables.ToString() + @"
-    }}
-}}");
+    }
+}");
+            file.Close();
+            Console.WriteLine("Saved as " + fileName);
+
+            fileName = filePath + _clase + ".cs";
+            file = new StreamWriter(fileName);
+            file.WriteLine(@"using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data;
+using System.Drawing;
+using System.Linq;
+using System.Text;
+using System.Windows.Forms;
+
+namespace " + _espacioDeNombre + @".Forms
+{
+    public partial class " + _clase + @" : Form
+    {
+        public " + _clase + @"()
+        {
+            InitializeComponent();
+        }
+    }
+}");
+            file.Close();
+            Console.WriteLine("Saved as " + fileName);
 }
     }
 }
