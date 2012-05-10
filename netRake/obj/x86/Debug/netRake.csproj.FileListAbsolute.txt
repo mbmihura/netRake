@@ -1,0 +1,5 @@
+C:\Users\Martin\Dropbox\Proyectos\netRake\netRake\obj\x86\Debug\ResolveAssemblyReference.cache
+C:\Users\Martin\Dropbox\Proyectos\netRake\netRake\bin\Debug\netRake.exe
+C:\Users\Martin\Dropbox\Proyectos\netRake\netRake\bin\Debug\netRake.pdb
+C:\Users\Martin\Dropbox\Proyectos\netRake\netRake\obj\x86\Debug\netRake.exe
+C:\Users\Martin\Dropbox\Proyectos\netRake\netRake\obj\x86\Debug\netRake.pdb
