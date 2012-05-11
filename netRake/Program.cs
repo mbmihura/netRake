@@ -26,7 +26,7 @@ namespace netRake
             }
 
             //HACK: handy, automatic way to introduce a command during development. Eliminate in production.
-            args = new string[] { "generate", "form", "myForm" };
+            args = new string[] { "generate", "form", "myForm", "string","Nombre","bool","Socio","datetime","Fecha_de_Registro"};
 
             //Extracts Type from the first argument, 
             Type commandType = _comands[args[0]];
