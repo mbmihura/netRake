@@ -20,20 +20,21 @@ namespace netRake
         public void Create(string filePath)
         {
             StringBuilder declareComponentVariables = new StringBuilder();
-            StringBuilder initializeComponentbody = new StringBuilder();
+            StringBuilder initializeComponentControlProperties = new StringBuilder();
+            StringBuilder initializeComponentAddControls = new StringBuilder();
 
             Console.WriteLine("Creating " + _clase + " in " + _espacioDeNombre + ".Forms"+ Environment.NewLine + "Synthesizing code...");
             foreach (Control c in _controles)
             {
                 declareComponentVariables.AppendLine(c.declaracionVariables());
-                initializeComponentbody.AppendLine(c.instanciacion());
+                initializeComponentControlProperties.AppendLine(c.instanciacion());
+                initializeComponentAddControls.AppendLine(c.AutoAddForm());
             }
-            initializeComponentbody.AppendLine("this.SuspendLayout();");
+            initializeComponentControlProperties.AppendLine("this.SuspendLayout();");
 
             foreach (Control c in _controles)
             {
-                initializeComponentbody.AppendLine("//" + Environment.NewLine + "// " + c.Name + Environment.NewLine + "//");
-                initializeComponentbody.AppendLine(c.configuracionPropiedades());
+                initializeComponentControlProperties.AppendLine(c.configuracionPropiedades());
 
             }
             
@@ -69,16 +70,18 @@ namespace netRake
         /// </summary>
         private void InitializeComponent()
         {
-            " + initializeComponentbody.ToString() + @"
+            " + initializeComponentControlProperties.ToString() + @"
             // 
             // "+_clase+@"
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(284, 262);
+            " + initializeComponentAddControls + @"
             this.Name = " + "\"" + _clase + "\"" + @";
             this.Text = " + "\"" + _clase + "\"" + @";
             this.ResumeLayout(false);
+            this.PerformLayout();
         }
 
         #endregion
