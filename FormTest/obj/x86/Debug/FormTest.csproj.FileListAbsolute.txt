@@ -1,9 +1,0 @@
-C:\Users\Martin\Dropbox\Proyectos\netRake\FormTest\bin\Debug\FormTest.exe
-C:\Users\Martin\Dropbox\Proyectos\netRake\FormTest\bin\Debug\FormTest.pdb
-C:\Users\Martin\Dropbox\Proyectos\netRake\FormTest\obj\x86\Debug\ResolveAssemblyReference.cache
-C:\Users\Martin\Dropbox\Proyectos\netRake\FormTest\obj\x86\Debug\FormTest.Form1.resources
-C:\Users\Martin\Dropbox\Proyectos\netRake\FormTest\obj\x86\Debug\FormTest.Properties.Resources.resources
-C:\Users\Martin\Dropbox\Proyectos\netRake\FormTest\obj\x86\Debug\GenerateResource.read.1.tlog
-C:\Users\Martin\Dropbox\Proyectos\netRake\FormTest\obj\x86\Debug\GenerateResource.write.1.tlog
-C:\Users\Martin\Dropbox\Proyectos\netRake\FormTest\obj\x86\Debug\FormTest.exe
-C:\Users\Martin\Dropbox\Proyectos\netRake\FormTest\obj\x86\Debug\FormTest.pdb

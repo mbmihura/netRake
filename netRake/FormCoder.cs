@@ -19,18 +19,20 @@ namespace netRake
          }
         public void Create(string filePath)
         {
-            Console.WriteLine("Creating " + _clase + " in " + _espacioDeNombre + ".Forms"+ Environment.NewLine + "Synthesizing code...");
             StringBuilder declareComponentVariables = new StringBuilder();
             StringBuilder initializeComponentbody = new StringBuilder();
+
+            Console.WriteLine("Creating " + _clase + " in " + _espacioDeNombre + ".Forms"+ Environment.NewLine + "Synthesizing code...");
             foreach (Control c in _controles)
             {
                 declareComponentVariables.AppendLine(c.declaracionVariables());
                 initializeComponentbody.AppendLine(c.instanciacion());
             }
             initializeComponentbody.AppendLine("this.SuspendLayout();");
+
             foreach (Control c in _controles)
             {
-                initializeComponentbody.AppendLine("//" + Environment.NewLine + "// " + c.Nombre + Environment.NewLine + "//");
+                initializeComponentbody.AppendLine("//" + Environment.NewLine + "// " + c.Name + Environment.NewLine + "//");
                 initializeComponentbody.AppendLine(c.configuracionPropiedades());
 
             }

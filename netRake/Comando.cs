@@ -32,6 +32,20 @@ namespace netRake.Commands
                     int cropIndex = currentDirectoyName.LastIndexOf('\\') +1;
                     currentDirectoyName = currentDirectoyName.Substring(cropIndex,currentDirectoyName.Length - cropIndex);
                     new FormCoder(currentDirectoyName, args[1], controls).Create(Environment.CurrentDirectory);
+
+
+                    Dictionary<string, Type> types = new Dictionary<string, Type>();
+                    types.Add("string", typeof(string));
+                    types.Add("int", typeof(int));
+                    types.Add("dateTime", typeof(DateTime));
+                    types.Add("bool", typeof(bool));
+                    types.Add("double", typeof(double));
+                    types.Add("decimal", typeof(decimal));
+                    types.Add("", typeof(string));
+                    types.Add("", typeof(int));
+                    types.Add("", typeof(DateTime));
+
+
                     break;
                 default:
                     throw new IncorrectArgumentException(this, args[0]);
